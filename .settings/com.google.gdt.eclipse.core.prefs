@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+jarsExcludedFromWebInfLib=
+warSrcDir=target/wiki-1.0-SNAPSHOT
+warSrcDirIsOutput=false
