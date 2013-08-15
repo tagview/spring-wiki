@@ -2,6 +2,8 @@ package br.com.tagview.wiki.models;
 
 import javax.validation.constraints.NotNull;
 
+import br.com.tagview.wiki.validators.NotBlank;
+
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
@@ -11,9 +13,11 @@ public class Page {
 	Long id;
 	
 	@NotNull
+	@NotBlank
 	String title;
 	
 	@NotNull
+	@NotBlank
 	String body;
 
 	public Long getId() {
