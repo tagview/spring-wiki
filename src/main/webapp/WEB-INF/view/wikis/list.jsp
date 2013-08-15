@@ -11,14 +11,14 @@
 <title>Wiki</title>
 </head>
 <body>
-	<h2>Pages</h2>
+	<h2>Wikis</h2>
 
 	<ul>
-		<c:forEach var="page" items="${pages}">
-			<li><a href="/pages/${page.id}">${page.title}</a>
+		<c:forEach var="wiki" items="${wikis}">
+			<li><a href="/wikis/${wiki.id}/pages">${wiki.name}</a>
 		</c:forEach>
 	</ul>
 
-	<a href="/pages/new">Create a new page</a>
+	<a href="/wikis/new">Create a new wiki</a>
 </body>
 </html>

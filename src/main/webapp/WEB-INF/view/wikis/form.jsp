@@ -7,18 +7,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create a new Page</title>
+<title>Create a new Wiki</title>
 </head>
 <body>
-	<h2>New Page</h2>
+	<h2>New Wiki</h2>
 	
-	<form:form action="/pages" method="POST" modelAttribute="page">
-		<form:input path="title" />
-		<form:errors path="title" />
-		
-		<form:textarea path="body" />
-		<form:errors path="body" />
-		
+	<form:form action="/wikis" method="POST" modelAttribute="wiki">
+		<form:input path="name" />
+		<form:errors path="name" />
+				
 		<button type="submit">Save</button>
 	</form:form>
 </body>

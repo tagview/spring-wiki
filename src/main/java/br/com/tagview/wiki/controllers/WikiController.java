@@ -1,7 +1,5 @@
 package br.com.tagview.wiki.controllers;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,40 +9,37 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import br.com.tagview.wiki.dao.PageDAO;
-import br.com.tagview.wiki.models.Page;
+import br.com.tagview.wiki.dao.WikiDAO;
+import br.com.tagview.wiki.models.Wiki;
 
 @Controller
 public class WikiController {
-	
 	@Autowired
-	PageDAO pageDAO;
+	WikiDAO wikiDAO;
 	
-	@RequestMapping("/")
-	public String list(Model model) {
-		List<Page> pages = pageDAO.all();
+	@RequestMapping(value = { "/", "/wikis" })
+	public String list(Model view) {
+		view.addAttribute("wikis", wikiDAO.all());
 		
-		model.addAttribute("pages", pages);
-		
-		return "listPages";
+		return "wikis/list";
 	}
 	
-	@RequestMapping("/pages/new")
-	public String addPage(Model model) {
-		model.addAttribute("page", new Page());
+	@RequestMapping("/wikis/new")
+	public String add(Model view) {		
+		view.addAttribute("wiki", new Wiki());
 		
-		return "addPage";
+		return "wikis/form";
 	}
 	
-	@RequestMapping(value = "/pages", method = RequestMethod.POST)
-	public String createPage(@Valid Page page, BindingResult bindingResult, Model model) {
+	@RequestMapping(value = "/wikis", method = RequestMethod.POST)
+	public String create(@Valid Wiki wiki, BindingResult bindingResult, Model view) {		
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("page", page);
+			view.addAttribute("wiki", wiki);
 			
-			return "addPage";
+			return "wikis/form";
 		}
 		
-		pageDAO.save(page);
+		wikiDAO.save(wiki);
 		
 		return "redirect:/";
 	}

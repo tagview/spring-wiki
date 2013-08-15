@@ -3,6 +3,7 @@ package br.com.tagview.wiki.dao;
 import java.util.List;
 
 import br.com.tagview.wiki.models.Page;
+import br.com.tagview.wiki.models.Wiki;
 
 public interface PageDAO {
 
@@ -13,4 +14,6 @@ public interface PageDAO {
 	Boolean remove(Page page);
 	
 	Page findById(Long id);
+	
+	List<Page> allByWiki(Wiki wiki);
 }
