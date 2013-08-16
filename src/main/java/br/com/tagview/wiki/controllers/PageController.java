@@ -3,12 +3,16 @@ package br.com.tagview.wiki.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import br.com.tagview.wiki.dao.PageDAO;
 import br.com.tagview.wiki.dao.WikiDAO;
@@ -65,5 +69,14 @@ public class PageController {
 		view.addAttribute("page", pageDAO.findById(wiki, pageId));
 		
 		return "pages/show";
+	}
+	
+	/**
+	 * JSON APIs
+	 */
+	@RequestMapping(value="/api/wikis/{wikiId}/pages/{pageId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE, headers="Accept=application/json")
+	@ResponseBody
+	public String jsonShow(@PathVariable Long wikiId, @PathVariable Long pageId) throws JsonProcessingException {
+		return pageDAO.findById(pageId).toJSON();
 	}
 }
