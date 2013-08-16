@@ -14,6 +14,7 @@ public interface PageDAO {
 	Boolean remove(Page page);
 	
 	Page findById(Long id);
+	Page findById(Wiki wiki, Long id);
 	
 	List<Page> allByWiki(Wiki wiki);
 }

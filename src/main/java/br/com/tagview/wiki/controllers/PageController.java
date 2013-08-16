@@ -59,9 +59,10 @@ public class PageController {
 	}
 	
 	@RequestMapping(value="/wikis/{wikiId}/pages/{pageId}")
-	public String show(@PathVariable Long wikiId, @PathVariable Long pageId, Model view) {		
-		view.addAttribute("wiki", wikiDAO.findById(wikiId));
-		view.addAttribute("page", pageDAO.findById(pageId));
+	public String show(@PathVariable Long wikiId, @PathVariable Long pageId, Model view) {
+		Wiki wiki = wikiDAO.findById(wikiId);
+		view.addAttribute("wiki", wiki);
+		view.addAttribute("page", pageDAO.findById(wiki, pageId));
 		
 		return "pages/show";
 	}

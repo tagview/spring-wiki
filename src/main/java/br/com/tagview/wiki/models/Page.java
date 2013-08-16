@@ -7,14 +7,14 @@ import br.com.tagview.wiki.validators.NotBlank;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Parent;
+import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class Page {
 	@Id 
 	Long id;
 	
-	@Parent
+	@Index
 	Ref<Wiki> wiki;
 
 	@NotNull

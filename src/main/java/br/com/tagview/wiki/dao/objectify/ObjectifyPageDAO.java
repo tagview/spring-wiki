@@ -38,7 +38,12 @@ public class ObjectifyPageDAO implements PageDAO {
 		return ofy().load().key(key).now();
 	}
 	
+	@Override
+	public Page findById(Wiki wiki, Long id) {
+		return ofy().load().type(Page.class).filter("id", id).filter("wiki", wiki).first().now();
+	}
+	
 	public List<Page> allByWiki(Wiki wiki) {
-		return ofy().load().type(Page.class).ancestor(wiki).list();
+		return ofy().load().type(Page.class).filter("wiki", wiki).list();
 	}
 }
