@@ -58,7 +58,7 @@ public class PageController {
 		return "redirect:/wikis/"+ wikiId +"/pages";
 	}
 	
-	@RequestMapping("/wikis/{wikiId}/pages/${pageId}")
+	@RequestMapping(value="/wikis/{wikiId}/pages/{pageId}")
 	public String show(@PathVariable Long wikiId, @PathVariable Long pageId, Model view) {		
 		view.addAttribute("wiki", wikiDAO.findById(wikiId));
 		view.addAttribute("page", pageDAO.findById(pageId));
