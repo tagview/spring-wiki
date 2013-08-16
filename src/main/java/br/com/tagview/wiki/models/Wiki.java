@@ -45,4 +45,18 @@ public class Wiki {
 		
 		return mapper.writeValueAsString(wiki);
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		return o instanceof Wiki && ((Wiki) o).id == this.id;
+	}
+	
+	@Override
+	public int hashCode() {
+		int hash = 17;
+		hash = (31 * hash) + (this.id == null ? 0 : this.id.intValue());
+		hash = (31 * hash) + this.getClass().getName().hashCode();
+		
+		return hash;
+	}
 }
